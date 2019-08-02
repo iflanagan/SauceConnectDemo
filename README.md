@@ -6,11 +6,21 @@ To start the application locally simply run:
 1) `npm install`
 2) `node server.js`
 
-### Features List
-* Get Sauce E2E test results to return to the develop job Jenkins console
-* Add build pass fail and test pass fail status to Protractor tests
-* Add nodeJS script to analyze and automatically approve/deny pull requests
-* Build and run project during PR build, then run E2E test suite on Sauce using Sauce Connect
-* Automate the whole project with gulp
-* Move logic into NodeJS API layer
-# SauceConnectDemo
+
+Echo “Tunnel 0”
+Cd <yourSCdir>; ./sc -u $SAUCE_USERNAME -k $SAUCE_ACCESS_KEY -i SC_shared_demo --shared-tunnel --no-remove-colliding-tunnels --se-port 7226 --pidfile /tmp/sc_client-Test_shared_demo_0.pid --logfile sc-Test_shared_demo_0.log --scproxy-port 29998
+
+Echo “Tunnel 1”
+cd  <yourSCdir>;  ./sc -u $SAUCE_USERNAME -k $SAUCE_ACCESS_KEY -i SC_shared_demo --shared-tunnel --no-remove-colliding-tunnels --se-port 7225 --pidfile /tmp/sc_client-Test_shared_demo_1.pid --logfile sc-Test_shared_demo_1.log --scproxy-port 29999
+
+
+----sauceconnect localhost demo-----
+
+in one window
+cd <yourprojectdir>; node server.js
+
+in another window
+echo "Starting LocalPage Demo"; echo "Running Test"
+cd <yourprojectdir>; npm run protractor
+
+
